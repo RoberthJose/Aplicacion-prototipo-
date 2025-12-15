@@ -338,5 +338,28 @@ button:hover {
     transition: box-shadow 0.3s;
 }
 
+/* ===== MODO OSCURO GENERAL PARA TODA LA PÁGINA ===== */
+body.dark-mode,
+body.dark-mode html,
+body.dark-mode main,
+body.dark-mode section,
+body.dark-mode header,
+body.dark-mode footer {
+    background-color: #121212 !important; /* fondo oscuro en toda la página */
+    color: #fff !important;               /* texto de afuera blanco */
+}
+
+/* Mantener cuadros siempre con fondo blanco y texto negro */
+body.dark-mode .curso-item,
+body.dark-mode .tarea-item,
+body.dark-mode form,
+body.dark-mode .calendario th,
+body.dark-mode .calendario td {
+    background-color: #fff !important; /* fondo blanco siempre */
+    color: #000 !important;            /* texto negro siempre */
+}
+
+
+
 
 
