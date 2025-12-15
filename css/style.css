@@ -424,7 +424,3 @@ button {
 button:focus {
     outline: 2px dashed transparent; /* casi invisible */
     outline-offset: 2px;
-
-
-
-
