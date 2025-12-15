@@ -1,337 +1,38 @@
-/* ===== RESET BÁSICO ===== */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
+/* ===== MODO OSCURO ===== */
+const toggleDark = document.getElementById('toggle-dark');
+
+// Activa modo oscuro si ya estaba guardado
+if(localStorage.getItem('dark-mode') === 'true') {
+    document.body.classList.add('dark-mode');
 }
 
-/* ===== BODY Y COLORES ===== */
-body {
-    background-color: #f5f5f5;
-    color: #222;
-    line-height: 1.6;
-    transition: background-color 0.3s, color 0.3s;
+// Cambia modo oscuro al hacer clic
+toggleDark.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    localStorage.setItem('dark-mode', document.body.classList.contains('dark-mode'));
+});
+
+/* ===== MENÚ HAMBURGUESA ===== */
+const toggleMenu = document.getElementById('menu-toggle');
+const menu = document.getElementById('mobile-menu');
+
+if(toggleMenu && menu) {
+    toggleMenu.addEventListener('click', () => {
+        menu.classList.toggle('active');     // Muestra u oculta el menú
+        toggleMenu.classList.toggle('active'); // Animación de botón
+    });
 }
 
-/* MODO OSCURO AUTOMÁTICO */
-@media (prefers-color-scheme: dark) {
-    body {
-        background-color: #121212;
-        color: #fff;
-    }
+/* ===== REDIRECCIÓN FORMULARIO LOGIN ===== */
+const formLogin = document.querySelector('form.form-login');
+
+if(formLogin) {
+    formLogin.addEventListener('submit', (e) => {
+        e.preventDefault(); // Evita envío real
+        // Aquí puedes agregar validaciones si quieres
+        window.location.href = 'dashboard.html'; // Redirige al dashboard
+    });
 }
 
-/* MODO OSCURO MANUAL */
-body.dark-mode {
-    background-color: #121212;
-    color: #fff;
-}
-
-/* ===== BODY FLEX PARA FOOTER ===== */
-html, body {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    overflow-x: hidden;
-}
-
-/* ===== ENCABEZADO ===== */
-.header {
-    background-color: #2c3e50;
-    color: #fff;
-    padding: 1rem 0;       
-    text-align: center;
-    width: 100vw;
-}
-.header-title {
-    margin-bottom: 0.5rem;
-}
-
-/* ===== NAV ===== */
-.nav {
-    display: flex;
-    justify-content: center; 
-    width: 100%;
-    padding: 0 1rem;        
-}
-.nav-link {
-    color: #fff;
-    text-decoration: none;
-    margin: 0 0.5rem;
-    position: relative; 
-}
-.nav-link::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    height: 2px;
-    width: 0;
-    background-color: #4a90e2;
-    transition: width 0.3s ease;
-}
-.nav-link:hover::after,
-.nav-link:focus::after {
-    width: 100%;
-}
-@media (min-width: 769px) {
-    .nav-link::after {
-        display: none !important;
-    }
-}
-
-/* ===== SECCIONES ===== */
-.main {
-    flex: 1;
-    max-width: 900px;
-    margin: 1rem auto;
-}
-.section-title {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-}
-
-/* ===== LISTAS DE TARJETAS ===== */
-.cursos-list, .tareas-list {
-    list-style: none;
-    margin-bottom: 1rem;
-    padding: 0;
-}
-
-/* ===== CUADROS DE "MIS CURSOS" ===== */
-.section-cursos .cursos-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-    justify-content: center;
-    max-width: 900px;
-    margin: 0 auto;
-}
-.section-cursos .curso-item {
-    background-color: #fff;
-    border-radius: 8px;
-    padding: 1rem;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    flex: 1 1 900px; 
-    max-width: 900px;
-    box-sizing: border-box;
-}
-
-/* ===== TARJETAS DE DASHBOARD ===== */
-.tarea-item {
-    background-color: #fff;
-    border-radius: 8px;
-    padding: 1rem;
-    margin-bottom: 1rem;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    width: 100%;
-    box-sizing: border-box;
-}
-.curso-item ul, .tarea-item ul {
-    margin-top: 0.5rem;
-    padding-left: 1.2rem;
-}
-.curso-item li, .tarea-item li {
-    margin-bottom: 0.3rem;
-}
-
-/* ===== FORMULARIOS ===== */
-form {
-    background-color: #fff;
-    padding: 1rem;
-    border-radius: 8px;
-    max-width: 400px;
-    margin: 1rem auto;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    transition: background-color 0.3s, box-shadow 0.3s;
-}
-label {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 0.2rem;
-}
-input[type="email"], input[type="password"], button {
-    width: 100%;
-    padding: 0.5rem;
-    margin-bottom: 0.8rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 1rem;
-}
-input:focus {
-    outline: 2px solid #4a90e2;
-}
-button {
-    background-color: #4a90e2;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.3s;
-}
-button:hover, button:focus {
-    background-color: #357ABD;
-}
-
-/* ===== LOGO ===== */
-#logo {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    display: block;
-    margin: 1rem auto;
-    transition: transform 0.5s;
-}
-#logo:hover {
-    transform: scale(1.2) rotate(360deg);
-}
-
-/* ===== CALENDARIO ===== */
-.calendario-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-}
-.calendario-nav a {
-    text-decoration: none;
-    color: #000;
-    font-weight: bold;
-}
-.calendario-nav strong {
-    font-size: 1.1rem;
-}
-.calendario {
-    width: 100%;
-    border-collapse: collapse;
-    table-layout: fixed;
-}
-.calendario th, .calendario td {
-    border: 1px solid #ccc;
-    text-align: center;
-    vertical-align: middle;
-    width: 14.28%;
-    height: 90px;
-    padding: 0;
-    background-color: transparent;
-}
-.calendario td > div:first-child {
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    font-weight: bold;
-    font-size: 0.8rem;
-}
-.eventos-container {
-    margin-top: 2px;
-}
-.evento {
-    font-size: 0.7rem;
-    display: block;
-}
-
-/* ===== PIE DE PÁGINA ===== */
-.footer {
-    margin-top: auto;
-    text-align: center;
-    font-size: 0.9rem;
-    color: #666;
-}
-
-/* ===== BOTÓN MODO OSCURO ===== */
-#toggle-dark {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background-color: #fff;
-    color: #222;
-    border: 2px solid #4a90e2;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    cursor: pointer;
-    font-size: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s;
-    z-index: 999;
-}
-#toggle-dark:hover {
-    transform: scale(1.2);
-}
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 768px) {
-    .header, .main, form {
-        padding: 0.5rem;
-    }
-    .curso-item, .tarea-item {
-        padding: 0.8rem;
-    }
-    #logo {
-        width: 150px;
-        height: 150px;
-    }
-    .calendario th, .calendario td {
-        height: 70px;
-    }
-    .evento {
-        font-size: 0.65rem;
-    }
-    #toggle-dark {
-        width: 40px;
-        height: 40px;
-        font-size: 1.2rem;
-    }
-}
-
-/* ===== MODO OSCURO GENERAL ===== */
-body.dark-mode,
-body.dark-mode html,
-body.dark-mode main,
-body.dark-mode section,
-body.dark-mode header,
-body.dark-mode footer {
-    background-color: #121212 !important; /* fondo oscuro en toda la página */
-    color: #fff !important;               /* texto de afuera blanco */
-}
-
-/* Mantener cuadros siempre con fondo blanco y texto negro */
-body.dark-mode .curso-item,
-body.dark-mode .tarea-item,
-body.dark-mode form,
-body.dark-mode .calendario th,
-body.dark-mode .calendario td {
-    background-color: #fff !important; /* fondo blanco siempre */
-    color: #000 !important;            /* texto negro siempre */
-}
-
-/* ===== EFECTOS INTERACTIVOS ===== */
-.calendario td {
-    transition: background-color 0.3s, box-shadow 0.3s;
-}
-.calendario td:hover {
-    background-color: #e0e0e0;
-    cursor: pointer;
-}
-body.dark-mode .calendario td:hover {
-    background-color: #333;
-}
-.curso-item:hover,
-.tarea-item:hover,
-form:hover {
-    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
-    transform: translateY(-3px);
-    transition: transform 0.3s, box-shadow 0.3s;
-}
-input[type="email"]:hover,
-input[type="password"]:hover,
-textarea:hover,
-button:hover {
-    box-shadow: 0 3px 6px rgba(0,0,0,0.15);
-    transition: box-shadow 0.3s;
-}
 
 
