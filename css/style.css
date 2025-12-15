@@ -425,3 +425,20 @@ button:focus {
     outline: 2px dashed transparent; /* casi invisible */
     outline-offset: 2px;
 }
+
+/* ===== MODO OSCURO GENERAL ===== */
+body.dark-mode {
+    background-color: #121212; /* fondo oscuro de toda la página */
+    color: #fff;               /* textos de afuera blancos */
+}
+
+/* Mantener cuadros siempre con fondo blanco y texto negro */
+body.dark-mode .curso-item,
+body.dark-mode .tarea-item,
+body.dark-mode form,
+body.dark-mode .calendario th,
+body.dark-mode .calendario td {
+    background-color: #fff !important; /* fondo blanco siempre */
+    color: #000 !important;            /* texto negro siempre */
+}
+
