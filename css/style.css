@@ -18,14 +18,14 @@ body {
 @media (prefers-color-scheme: dark) {
     body {
         background-color: #121212;
-        color: #eee;
+        color: #fff;
     }
 }
 
 /* MODO OSCURO MANUAL */
 body.dark-mode {
     background-color: #121212;
-    color: #eee;
+    color: #fff;
 }
 
 /* ===== BODY FLEX PARA FOOTER ===== */
@@ -35,7 +35,7 @@ html, body {
     padding: 0;
     display: flex;
     flex-direction: column;
-    overflow-x: hidden; /* quita scroll horizontal */
+    overflow-x: hidden;
 }
 
 /* ===== ENCABEZADO ===== */
@@ -63,7 +63,7 @@ html, body {
     color: #fff;
     text-decoration: none;
     margin: 0 0.5rem;
-    position: relative; /* para ::after */
+    position: relative; 
 }
 
 /* ===== LÍNEA AZUL SOLO EN MÓVIL ===== */
@@ -71,7 +71,7 @@ html, body {
     content: "";
     position: absolute;
     left: 0;
-    bottom: 0; /* dentro del enlace */
+    bottom: 0;
     height: 2px;
     width: 0;
     background-color: #4a90e2;
@@ -89,7 +89,7 @@ html, body {
 
 /* ===== SECCIONES ===== */
 .main {
-    flex: 1; /* ocupa todo el espacio disponible entre header y footer */
+    flex: 1;
     max-width: 900px;
     margin: 1rem auto;
 }
@@ -178,8 +178,6 @@ button {
 }
 button:hover, button:focus {
     background-color: #357ABD;
-    outline: 2px solid #fff;
-    outline-offset: 2px;
 }
 
 /* ===== LOGO ===== */
@@ -241,7 +239,7 @@ button:hover, button:focus {
 
 /* ===== PIE DE PÁGINA ===== */
 .footer {
-    margin-top: auto; /* empuja al final */
+    margin-top: auto;
     text-align: center;
     font-size: 0.9rem;
     color: #666;
@@ -293,96 +291,25 @@ button:hover, button:focus {
         height: 40px;
         font-size: 1.2rem;
     }
-
-    /* MENÚ HAMBURGUESA */
-    .menu-toggle {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        width: 40px; /* más ancho para separar rallitas */
-        height: 35px; /* más alto para separar rallitas */
-        background-color: transparent;
-        border: none;
-        cursor: pointer;
-        position: relative;
-        z-index: 1000;
-    }
-    .menu-toggle div {
-        width: 35px; /* ajusta ancho de cada línea */
-        height: 3px;
-        background-color: #fff;
-        border-radius: 3px;
-        transition: all 0.3s ease;
-    }
-    .nav {
-        display: none;
-        position: absolute;
-        top: 60px;
-        right: 20px;
-        background-color: #2c3e50;
-        flex-direction: column;
-        padding: 0.5rem 1rem;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        z-index: 999;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.3s ease;
-    }
-    .nav.active {
-        display: flex;
-        max-height: 300px;
-    }
-    .nav-link {
-        margin: 0.5rem 0;
-        color: #fff;
-    }
-    .menu-toggle.active div:nth-child(1) {
-        transform: rotate(-45deg) translate(-5px, 5px);
-    }
-    .menu-toggle.active div:nth-child(2) {
-        opacity: 0;
-    }
-    .menu-toggle.active div:nth-child(3) {
-        transform: rotate(45deg) translate(-5px, -5px);
-    }
 }
 
-/* ===== MODO OSCURO TARJETAS, FORMULARIOS E INPUTS ===== */
-body.dark-mode, @media (prefers-color-scheme: dark) {
-    .curso-item, .tarea-item, form {
-        background-color: #1e1e1e;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.6);
-        color: #eee;
-    }
-    input, textarea, select {
-        background-color: #2a2a2a;
-        color: #f5f5f5;
-        border: 1px solid #555;
-    }
-    button {
-        background-color: #4a90e2;
-        color: #fff;
-    }
+/* ===== MODO OSCURO GENERAL EN MÓVIL Y PC ===== */
+body.dark-mode,
+body.dark-mode html,
+body.dark-mode main,
+body.dark-mode section {
+    background-color: #121212 !important; /* fondo oscuro de toda la página */
+    color: #fff !important;               /* textos de afuera blancos */
 }
 
-/* ===== FORZAR TEXTO NEGRO EN CONTENEDORES BLANCOS EN MODO OSCURO ===== */
+/* Mantener cuadros siempre con fondo blanco y texto negro */
 body.dark-mode .curso-item,
 body.dark-mode .tarea-item,
-body.dark-mode form {
-    color: #000 !important;
-}
-body.dark-mode .curso-item ul li,
-body.dark-mode .tarea-item ul li,
-body.dark-mode form label {
-    color: #000 !important;
-}
-body.dark-mode input,
-body.dark-mode textarea,
-body.dark-mode select {
-    color: #000 !important;
+body.dark-mode form,
+body.dark-mode .calendario th,
+body.dark-mode .calendario td {
     background-color: #fff !important;
-    border: 1px solid #ccc !important;
+    color: #000 !important;
 }
 
 /* ===== EFECTOS INTERACTIVOS ===== */
@@ -411,34 +338,5 @@ button:hover {
     transition: box-shadow 0.3s;
 }
 
-/* ===== QUITAR CUADRO AZUL EN ENFOQUE ===== */
-.nav-link,
-.menu-toggle,
-button {
-    outline: none; /* quita el cuadro azul al hacer clic */
-}
 
-/* Mantener un foco accesible si se navega con teclado (opcional) */
-.nav-link:focus,
-.menu-toggle:focus,
-button:focus {
-    outline: 2px dashed transparent; /* casi invisible */
-    outline-offset: 2px;
-}
-
-/* ===== MODO OSCURO GENERAL ===== */
-body.dark-mode {
-    background-color: #121212; /* fondo oscuro de toda la página */
-    color: #fff;               /* textos de afuera blancos */
-}
-
-/* Mantener cuadros siempre con fondo blanco y texto negro */
-body.dark-mode .curso-item,
-body.dark-mode .tarea-item,
-body.dark-mode form,
-body.dark-mode .calendario th,
-body.dark-mode .calendario td {
-    background-color: #fff !important; /* fondo blanco siempre */
-    color: #000 !important;            /* texto negro siempre */
-}
 
